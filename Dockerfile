@@ -3,7 +3,7 @@ ARG KEYSERVER="keyserver.ubuntu.com"
 ARG RECVKEYS="605C66F00D6C9793 0E98404D386FA1D9 648ACFD622F3D138 8E61C2AB9A6D1557"
 RUN echo "speedtest build" && \
     apt-get update && \
-    apt-get install -y gnupg1 apt-transport-https dirmngr curl && \
+    apt-get install -y gnupg1 apt-transport-https dirmngr && \
     set -a && \
     . /etc/os-release && \
     set +a && \
@@ -16,4 +16,4 @@ RUN echo "speedtest build" && \
         /tmp/* \
         /var/lib/apt/lists/* \
         /var/tmp/*
-CMD [ "speedtest", "--accept-license", "--accept-gdpr", "-f", "json" , "|" , "grep" , "timestamp" ]
+CMD [ "speedtest", "--accept-license", "--accept-gdpr", "--format=json" , "--progress=no", "--precision=8" ]
